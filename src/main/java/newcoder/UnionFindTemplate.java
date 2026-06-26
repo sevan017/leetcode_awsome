@@ -1,6 +1,9 @@
 package newcoder;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
 
 public class UnionFindTemplate {
     // 静态常量
@@ -52,7 +55,14 @@ public class UnionFindTemplate {
         int fx = find(x);
         int fy = find(y);
         if (fx != fy) {
-            father[fx] = fy;
+            if (size[fx] > size[fy]) {
+                father[fx] = fy;
+                size[fx] += size[fy];
+            } else {
+                father[fy] = fx;
+                size[fy] += size[fx];
+            }
+
         }
     }
 
