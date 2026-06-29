@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PredictStationGenerateV2 {
+public class CloudSecurityOptionV2 {
     static int n, k;
     // 当前最大权重和
     static int maxWeightSum = 0;
