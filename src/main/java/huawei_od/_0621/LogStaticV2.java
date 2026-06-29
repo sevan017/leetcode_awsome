@@ -1,4 +1,4 @@
-package huaweiod._0621;
+package huawei_od._0621;
 
 import java.io.BufferedReader;
 import java.io.IOException;
