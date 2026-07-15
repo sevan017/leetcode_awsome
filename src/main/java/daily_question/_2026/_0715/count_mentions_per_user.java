@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 //https://leetcode.cn/problems/count-mentions-per-user/
+// 总结：3个错误 1、变量用错 2、未排序 3、字符串处理时没完全考虑所有案例
 public class count_mentions_per_user {
 
     public static void main(String[] args) {
@@ -106,9 +107,12 @@ public class count_mentions_per_user {
                         // 指定加1
                         for (String e : event.get(2).split(" ")) {
                             // e : id0
-                            char[] ch = e.toCharArray();
+                            // char[] ch = e.toCharArray(); error3 没有对案例分析全面 可能 id100 char拆分后只能取到 char[2] = 1
+//                            char[] ch = e.toCharArray();
 //                            status[ch[2] - '0']++; 加错对象 应该加ans
-                            ans[ch[2] - '0']++;
+//                            ans[ch[2] - '0']++;
+                            String id = e.substring(2);
+                            ans[Integer.parseInt(id)]++;
                         }
                     }
                 } else {
