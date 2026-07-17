@@ -1,5 +1,6 @@
 package daily_question._2026._0718;
 
+// https://leetcode.cn/problems/find-greatest-common-divisor-of-array/description/?envType=daily-question&envId=2026-07-18
 public class find_greatest_common_divisor_of_array {
 
     public static void main(String[] args) {
