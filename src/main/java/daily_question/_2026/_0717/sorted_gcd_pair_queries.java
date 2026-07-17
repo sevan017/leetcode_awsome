@@ -14,7 +14,6 @@ public class sorted_gcd_pair_queries {
     static class Solution {
         // 自定义解题方法，根据题目需求补充实现
         public long gcdSum(int[] nums) {
-
             return 0L;
         }
     }
