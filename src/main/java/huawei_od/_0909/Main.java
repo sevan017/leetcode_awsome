@@ -44,10 +44,28 @@ public class Main {
         int res1 = getResult1(19);
         int res2 = getResult2(19);
         System.out.println(res2 + " " + res1);
+        System.out.println("==================================");
         // 结论 方法2正确
         res1 = getResult1(20);
         res2 = getResult2(20);
         System.out.println(res2 + " " + res1);
+        System.out.println("==================================");
+
+        res2 = getResult2(20);
+        int res3 = getResult3(20);
+        System.out.println(res2 + " " + res3);
+        System.out.println("==================================");
+
+        for (int i = 0; i <= 100000; i++) {
+            int random = (int) (Math.random() * 1000 + 1);
+            res2 = getResult2(random);
+            res3 = getResult3(random);
+            if (res2 != res3) {
+                System.out.println(random + "：测试失败，res1=" + res2 + "，res2=" + res3);
+                break;
+            }
+            System.out.println(random + "测试成功");
+        }
     }
 
     static int getResult1(int n) {
@@ -75,6 +93,34 @@ public class Main {
             nums[i] = (t[6] + t[5]) - (t[0] + t[1]);
         }
 
+        return nums[n];
+    }
+
+
+    static int getResult3(int n) {
+        // n 的范围为 1 - 1000
+        // 前7个数字固定
+        if (n <= 7) {
+            return n;
+        }
+        int[] nums = new int[n + 1];
+        for (int i = 1; i <= 7; i++) {
+            nums[i] = i;
+        }
+        // 计算8 - n的数字
+        int[] t = new int[7];
+        for (int i = 8; i <= n; i++) {
+            // 复制nums数组最近的7个数字
+            // i = 8 => 7 + 6 - 1 - 2
+
+            for (int j = 0; j < 7; j++) {
+                t[j] = nums[i - 7 + j];
+            }
+            // System.arraycopy(nums, i - 7, t, 0, 7); 简化写法
+            // 排序数组
+            Arrays.sort(t);
+            nums[i] = t[6] + t[5] - t[1] - t[0];
+        }
         return nums[n];
     }
 
