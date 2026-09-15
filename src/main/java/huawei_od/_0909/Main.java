@@ -61,7 +61,7 @@ public class Main {
             res2 = getResult2(random);
             res3 = getResult3(random);
             if (res2 != res3) {
-                System.out.println(random + "：测试失败，res1=" + res2 + "，res2=" + res3);
+                System.out.println(random + "：测试失败，res1=" + res2 + "，res3=" + res3);
                 break;
             }
             System.out.println(random + "测试成功");
@@ -96,30 +96,33 @@ public class Main {
         return nums[n];
     }
 
+    // 最大的数为1000->对应下标为1000。舍弃下标0
+    static int[] nums = new int[1001];
 
-    static int getResult3(int n) {
-        // n 的范围为 1 - 1000
-        // 前7个数字固定
-        if (n <= 7) {
-            return n;
-        }
-        int[] nums = new int[n + 1];
+    static {
+        // 初始化前7个数字
         for (int i = 1; i <= 7; i++) {
             nums[i] = i;
         }
-        // 计算8 - n的数字
-        int[] t = new int[7];
-        for (int i = 8; i <= n; i++) {
-            // 复制nums数组最近的7个数字
-            // i = 8 => 7 + 6 - 1 - 2
+    }
 
+    static int getResult3(int n) {
+        if (nums[n] > 0) {
+            return nums[n];
+        }
+        // 计算第n个数，先获取最近的 7个数字。有可能最近7个数字还未计算出来
+        // 计算 8 ~ n
+        for (int i = 8; i <= 1000 && i <= n; i++) {
+            // 读取前7个数字
+            int[] t = new int[7];
             for (int j = 0; j < 7; j++) {
+                // i 代表当前要计算的数字。7 是最近的7个数字。假设 i = 9
+                // 9 - 7 + 0 = 2, 9 - 7 + 1 = 3,,, 表示 nums[3]~nums[8]的数字需要被取下来
                 t[j] = nums[i - 7 + j];
             }
-            // System.arraycopy(nums, i - 7, t, 0, 7); 简化写法
-            // 排序数组
+            // 对数组进行排序。默认升序
             Arrays.sort(t);
-            nums[i] = t[6] + t[5] - t[1] - t[0];
+            nums[i] = t[6] + t[5] - t[0] - t[1];
         }
         return nums[n];
     }
