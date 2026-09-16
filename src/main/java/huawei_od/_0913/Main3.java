@@ -13,6 +13,8 @@ public class Main3 {
         System.out.println(solve(route, n, target));
     }
 
+
+
     static int solve(String route, int n, int target) {
         // 拆分路由，
         int[] arr = new int[n];
